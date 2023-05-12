@@ -99,13 +99,20 @@ public class FireDetails  implements Serializable {
     }
     
     public String toCSV() {
+        int active;
+        if (isActive)
+            active = 1;
+        else
+            active = 0;
+        
         return
                 id + "," +
                 x_pos + "," +
                 y_pos + "," +
                 droneId + "," +
                 severity + "," +
-                burningAreaRadius;
+                burningAreaRadius + "," +
+                active;
     }
     
     // toString() Method
