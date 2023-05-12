@@ -79,12 +79,12 @@ public class FireServiceClient {
         return fires;
     }
     
-    public int sendFireTruck(int fireId){
+    public int sendFireTruck(int fireId, int truckId){
         
         int responseCode = 0;
         
         try {
-            URL url = new URL(BASE_URL + FIRE_EXT + "/" + fireId);
+            URL url = new URL(BASE_URL + FIRE_EXT + "/" + fireId + "/" + truckId);
             
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");

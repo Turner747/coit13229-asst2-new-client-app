@@ -20,11 +20,12 @@
       <RowConstraints />
     <RowConstraints />
     <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
     <RowConstraints />
   </rowConstraints>
    <children>
       <Button fx:id="getFiresButton" mnemonicParsing="false" onAction="#onGetFiresButtonClicked" prefWidth="650.0" text="Get Fires" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <TextArea fx:id="reportTextArea" prefHeight="300.0" prefWidth="650.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+      <TextArea fx:id="reportTextArea" prefHeight="300.0" prefWidth="650.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="3" />
       <Label text="Send FIre Trucks" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -35,9 +36,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label text="Fire ID:" GridPane.rowIndex="2" />
+      <Label text="Fire ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
       <TextField fx:id="fireIdTextField" prefWidth="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Button fx:id="sendTruckButton" mnemonicParsing="false" onAction="#onSendTruckButtonClicked" text="Send Truck" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Button fx:id="sendTruckButton" mnemonicParsing="false" onAction="#onSendTruckButtonClicked" text="Send Truck" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <TextField fx:id="truckIdTextField" prefWidth="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label text="Truck ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

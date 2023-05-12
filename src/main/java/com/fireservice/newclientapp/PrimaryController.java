@@ -26,6 +26,9 @@ public class PrimaryController {
     private Button sendTruckButton;
     
     @FXML
+    private TextField truckIdTextField;
+    
+    @FXML
     void initialize(){
         reportTextArea.setFont(Font.font("Monospace", FontWeight.MEDIUM, 12));
     }
@@ -43,9 +46,10 @@ public class PrimaryController {
     @FXML
     void onSendTruckButtonClicked(ActionEvent event) {
         int fireId = Integer.parseInt(fireIdTextField.getText());
+        int truckId = Integer.parseInt(truckIdTextField.getText());
         
         FireServiceClient fireApi = new FireServiceClient();
-        int status = fireApi.sendFireTruck(fireId);
+        int status = fireApi.sendFireTruck(fireId, truckId);
         
         if (status == 200){
             displayAlert("Success","Firetruck has been sent to fire " + fireId, AlertType.INFORMATION);
