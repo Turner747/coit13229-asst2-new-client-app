@@ -3,6 +3,8 @@ package com.fireservice.newclientapp;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -42,8 +44,14 @@ public class PrimaryController {
     void onSendTruckButtonClicked(ActionEvent event) {
         int fireId = Integer.parseInt(fireIdTextField.getText());
         
-        // call api
+        FireServiceClient fireApi = new FireServiceClient();
+        int status = fireApi.sendFireTruck(fireId);
         
+        if (status == 200){
+            displayAlert("Success","Firetruck has been sent to fire " + fireId, AlertType.INFORMATION);
+        } else {
+            displayAlert("Failure","An error has occurred. Error code: " + status, AlertType.ERROR);
+        }
     }
 
     private void printFires(ArrayList<FireDetails> fires){
@@ -73,5 +81,13 @@ public class PrimaryController {
         testFires.add(new FireDetails(3, 56, 24, 2, 3, 25.4));
         testFires.add(new FireDetails(4, 64, 33, 3, 3, 23.3));
         return testFires;
+    }
+    
+    private void displayAlert(String header, String message, AlertType type){
+        Alert alert = new Alert(type);
+        alert.setTitle("Send Firetruck");
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

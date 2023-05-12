@@ -23,7 +23,6 @@ import org.json.JSONObject;
 public class FireServiceClient {
     final private String BASE_URL = "http://localhost:8080/FireWebService";
     final private String FIRE_EXT = "/fires";
-    final private String TRUCK_EXT = "/firetruck";
     
     public FireServiceClient(){
         
@@ -77,5 +76,28 @@ public class FireServiceClient {
         }
         
         return fires;
+    }
+    
+    public int sendFireTruck(int fireId){
+        
+        int responseCode = 0;
+        
+        try {
+            URL url = new URL(BASE_URL + FIRE_EXT + "/" + fireId);
+            
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.connect();
+            
+            responseCode = conn.getResponseCode();
+            
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(FireServiceClient.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FireServiceClient.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        return responseCode;
     }
 }
