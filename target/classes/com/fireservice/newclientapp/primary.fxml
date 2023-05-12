@@ -23,8 +23,8 @@
     <RowConstraints />
   </rowConstraints>
    <children>
-      <Button fx:id="getFiresButton" mnemonicParsing="false" onAction="#onGetFiresButtonClicked" prefWidth="600.0" text="Get Fires" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <TextArea fx:id="reportTextArea" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+      <Button fx:id="getFiresButton" mnemonicParsing="false" onAction="#onGetFiresButtonClicked" prefWidth="650.0" text="Get Fires" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextArea fx:id="reportTextArea" prefHeight="300.0" prefWidth="650.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
       <Label text="Send FIre Trucks" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="14.0" />

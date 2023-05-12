@@ -55,20 +55,26 @@ public class PrimaryController {
     }
 
     private void printFires(ArrayList<FireDetails> fires){
-        final String HEADER_FORMAT = "%s%10s%10s%15s%15s%25s\n";
-        final String SEPARATOR = "-----------------------------------------------------------------------------\n";
-        final String ROW_FORMAT = "%d%9d%10d%13d%15d%22.2f\n";
+        final String HEADER_FORMAT = "%s%10s%10s%15s%15s%25s%10s\n";
+        final String SEPARATOR = "---------------------------------------------------------------------------------------\n";
+        final String ROW_FORMAT = "%d%9d%10d%13d%15d%22.2f%15s\n";
         
         StringBuilder output = new StringBuilder();
         
         output.append(String.format(HEADER_FORMAT,
-                "ID","X Pos","Y Pos","Drone ID","Severity","Burning Area Radius"));
+                "ID","X Pos","Y Pos","Drone ID","Severity","Burning Area Radius", "Active"));
         output.append(SEPARATOR);
         
         for(FireDetails f : fires){
+            String active;
+            if (f.isIsActive())
+                active = "Yes";
+            else
+                active = "No";
+            
             output.append(String.format(ROW_FORMAT,
                 f.getId(),f.getX_pos(),f.getY_pos(),f.getDroneId(),
-                f.getSeverity(),f.getBurningAreaRadius()));
+                f.getSeverity(),f.getBurningAreaRadius(), active));
         }
         
         reportTextArea.setText(output.toString());
@@ -76,10 +82,10 @@ public class PrimaryController {
     
     private ArrayList<FireDetails> getTestData(){
         ArrayList<FireDetails> testFires = new ArrayList<FireDetails>();
-        testFires.add(new FireDetails(1, 23, 45, 1, 5, 34.5));
-        testFires.add(new FireDetails(2, 35, 77, 2, 1, 11.1));
-        testFires.add(new FireDetails(3, 56, 24, 2, 3, 25.4));
-        testFires.add(new FireDetails(4, 64, 33, 3, 3, 23.3));
+        testFires.add(new FireDetails(1, 23, 45, 1, 5, 34.5, true));
+        testFires.add(new FireDetails(2, 35, 77, 2, 1, 11.1, true));
+        testFires.add(new FireDetails(3, 56, 24, 2, 3, 25.4, false));
+        testFires.add(new FireDetails(4, 64, 33, 3, 3, 23.3, true));
         return testFires;
     }
     

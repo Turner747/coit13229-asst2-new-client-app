@@ -24,16 +24,18 @@ public class FireDetails  implements Serializable {
     private int droneId;
     private int severity;
     private double burningAreaRadius;
+    private boolean isActive;
     
     // Constructor
     
-    public FireDetails (int id, int x_pos, int y_pos, int droneId, int severity, double burningAreaRadius) {
+    public FireDetails (int id, int x_pos, int y_pos, int droneId, int severity, double burningAreaRadius, boolean isActive) {
         this.id = id;
         this.x_pos = x_pos;
         this.y_pos = y_pos;
         this.droneId = droneId;
         this.severity = severity;
         this.burningAreaRadius = burningAreaRadius;
+        this.isActive = isActive;
     }
     
     // Accessors / Getters
@@ -62,6 +64,10 @@ public class FireDetails  implements Serializable {
         return burningAreaRadius;
     }
     
+    public boolean isIsActive() {
+        return isActive;
+    }
+    
     // Mutators / Setters
     
     public void setId(int id) {
@@ -88,6 +94,10 @@ public class FireDetails  implements Serializable {
         this.burningAreaRadius = burningAreaRadius;
     }
     
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
     public String toCSV() {
         return
                 id + "," +
@@ -107,6 +117,7 @@ public class FireDetails  implements Serializable {
                "Y Position: " + y_pos + "\n" +
                "Drone Reporting: " + droneId + "\n" +
                "Severity: " + severity + "\n"+
-               "Burning Area Radius: " + burningAreaRadius + "\n";
+               "Burning Area Radius: " + burningAreaRadius + "\n" +
+               "Is Active: " + isActive + "\n";
     }
 }

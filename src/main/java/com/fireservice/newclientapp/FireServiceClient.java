@@ -62,8 +62,9 @@ public class FireServiceClient {
                     int droneId = arr.getJSONObject(i).getInt("droneId");
                     int severity = arr.getJSONObject(i).getInt("severity");
                     double burnArea = arr.getJSONObject(i).getDouble("burningAreaRadius");
+                    boolean isActive = arr.getJSONObject(i).getBoolean("isActive");
                     
-                    fires.add(new FireDetails(id,x_pos, y_pos, droneId, severity, burnArea));
+                    fires.add(new FireDetails(id,x_pos, y_pos, droneId, severity, burnArea, isActive));
                 }
             }
             
