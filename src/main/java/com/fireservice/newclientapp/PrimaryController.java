@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class PrimaryController {
 
@@ -20,10 +22,20 @@ public class PrimaryController {
 
     @FXML
     private Button sendTruckButton;
+    
+    @FXML
+    void initialize(){
+        reportTextArea.setFont(Font.font("Monospace", FontWeight.MEDIUM, 12));
+    }
 
     @FXML
     void onGetFiresButtonClicked(ActionEvent event) {
-        // call web service api
+        FireServiceClient fireApi = new FireServiceClient();
+        
+        //ArrayList<FireDetails> fires = fireApi.getFires(); // api call
+        ArrayList<FireDetails> fires = getTestData(); // replace with api call
+        
+        printFires(fires);
     }
 
     @FXML
@@ -34,9 +46,32 @@ public class PrimaryController {
         
     }
 
-    private void printFires(ArrayList fires){
+    private void printFires(ArrayList<FireDetails> fires){
+        final String HEADER_FORMAT = "%s%10s%10s%15s%15s%25s\n";
+        final String SEPARATOR = "-----------------------------------------------------------------------------\n";
+        final String ROW_FORMAT = "%d%9d%10d%13d%15d%22.2f\n";
         
-        // layout and print fire details to report text area
+        StringBuilder output = new StringBuilder();
         
+        output.append(String.format(HEADER_FORMAT,
+                "ID","X Pos","Y Pos","Drone ID","Severity","Burning Area Radius"));
+        output.append(SEPARATOR);
+        
+        for(FireDetails f : fires){
+            output.append(String.format(ROW_FORMAT,
+                f.getId(),f.getX_pos(),f.getY_pos(),f.getDroneId(),
+                f.getSeverity(),f.getBurningAreaRadius()));
+        }
+        
+        reportTextArea.setText(output.toString());
+    }
+    
+    private ArrayList<FireDetails> getTestData(){
+        ArrayList<FireDetails> testFires = new ArrayList<FireDetails>();
+        testFires.add(new FireDetails(1, 23, 45, 1, 5, 34.5));
+        testFires.add(new FireDetails(2, 35, 77, 2, 1, 11.1));
+        testFires.add(new FireDetails(3, 56, 24, 2, 3, 25.4));
+        testFires.add(new FireDetails(4, 64, 33, 3, 3, 23.3));
+        return testFires;
     }
 }
